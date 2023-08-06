@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmls:th="http://thymeleaf.org"
+  xmls:layout="http://www.ultraq.net/thymeleaf/layout"
+>
+  <head>
+    <title>SiteWare</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="/image/favicon.png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+		<link href="/css/shop-homepage.css" rel="stylesheet" />
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <body>
+		<nav  th:replace="cliente/fragments/navbar :: navbar"></nav>
+    <!-- Page Content -->
+		     <header class="bg-dark py-5">
+					<div class="container px-4 px-lg-5 my-5">
+							<div class="text-center text-white">
+									<h1 class="display-4 fw-bolder">Loja SiteWare</h1>
+									<p class="lead fw-normal text-white-50 mb-0">Boas Compras!</p>
+							</div>
+					</div>
+			</header>
+    <div class="container py-5" >
+          <div class="row">
+            <div
+              class="col-lg-4 col-md-6 mb-4"
+              th:each="produto : ${listaProdutos}"
+            >
+              <div class="card h-100">
+                <a href="#" id="img-posicao"
+                  ><img
+                    th:src="${produto.imagem}"
+                    alt="Imagem do Produto"
+                    width="100"
+                /></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                   <span class="fw-bolder"  th:text="${produto.nome}"></span>
+                  </h4>
+                  <h5>
+										<span>R$</span>
+                    <span th:text="${produto.preco}"></span>
+                  </h5>
+                  <p class="card-text">
+                    <span th:text="${produto.descricao}"></span>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a
+                    class="btn btn-outline-dark mt-auto btn-block"
+                    th:href="@{/adicionarCarrinho/{id}(id=${produto.id})}"
+                    role="button"
+                    >Comprar</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- /.container -->
+  </body>
+	<div th:replace="cliente/fragments/footer :: footer"></div>
+	<div th:replace="cliente/fragments/footer :: script"></div>
+</html>

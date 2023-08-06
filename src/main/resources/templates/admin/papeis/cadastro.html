@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmls:th="http://thymeleaf.org"
+  xmls:layout="http://www.ultraq.net/thymeleaf/layout"
+>
+  <head>
+    <title>Administrativo Siteware - Cadastrar Papeis</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="/image/favicon.png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:replace="fragments/navbar :: header"></header>
+
+    <div class="layout-main">
+      <aside th:replace="fragments/navbar:: sidebar"></aside>
+      <section class="layout-content">
+        <div class="page-header">
+          <nav class="navbar navbar-expand-md navbar-top bg-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <i class="oi oi-caret-right"></i>
+                  <span>Cadastrar Papeis</span>
+                </li>
+              </ul>
+            </div>
+            <a
+              class="btn btn-primary btn-md"
+              href="/admin/papeis/listar"
+              role="button"
+            >
+              <span
+                class="oi oi-spreadsheet"
+                title="Cadastro"
+                aria-hidden="true"
+              ></span>
+              <span>Listar Papeis</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="container" id="cadastro">
+          <form
+            action="/admin/papeis/salvar"
+            th:object="${papel}"
+            method="POST"
+          >
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="nome">Nome do Papel</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  placeholder="Nome do Papel"
+                  autofocus="autofocus"
+                  th:field="*{nome}"
+                  value=""
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <input type="hidden" id="id" th:field="*{id}" value="" />
+            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+    <div th:replace="fragments/footer :: script"></div>
+  </body>
+</html>

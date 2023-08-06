@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt" 
+      xmlns:layout="http://www.w3.org/1999/xhtml" 
+      layout:decorate="~{fragments/layout}">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:replace="fragments/navbar :: header">...</header>
+    <div class="layout-main" >
+      <aside th:replace="fragments/navbar :: sidebar">...</aside>
+      <section class="layout-content">
+        <nav class="navbar navbar-expand-md bg-light">
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <i class="oi oi-caret-right"></i>
+                <span>Home</span>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container">
+
+        </div>
+      </section>
+    </div>
+    </div>
+    <div  th:replace="fragments/footer :: footer"></div>
+    <div  th:replace="fragments/footer :: script"></div>
+  </body>
+</html>

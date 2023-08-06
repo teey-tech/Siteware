@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmls:th="http://thymeleaf.org"
+  xmls:layout="http://www.ultraq.net/thymeleaf/layout"
+>
+  <head>
+    <title>Finalizar Compra</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="/image/favicon.png" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+		<link href="/css/shop-homepage.css" rel="stylesheet" />
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <body>
+		<nav  th:replace="cliente/fragments/navbar :: navbar"></nav>
+    <section class="jumbotron text-center">
+      <div class="container">
+          <h1 class="jumbotron-heading">Finalizar Compra</h1>
+       </div>
+  </section>
+  
+  <div class="container mb-4 py-5">
+    <form action="/finalizar/confirmar" method="post">
+      <div class="row">
+        <div class="col-md-12">          
+            <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">Forma de pagamento</th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${cliente.nome}"></td>
+                        <td>
+                          <span th:text="${cliente.email}"></span>
+                        </td>                      
+                        <td>
+                          <select name="formaPagamento" id="formaPagamento" class="form-control">
+                            <option value="credito">Cartão de Credito</option>
+                            <option value="debito">Cartão de Debito</option>
+                            <option value="boleto">Boleto</option>
+                            <option value="pix">Pix</option>
+                          </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+          </div>
+            <div class="col-12 p-3">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"> </th>
+                                <th scope="col">Produto</th>
+                                <th scope="col" class="text-center">Quantidade</th>
+                                <th scope="col" class="text-center">Promoção Ativa</th>
+                                <th scope="col" class="text-right">Preço</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="item : ${listaItens}">
+                                <td> <img
+                                  th:src="${item.produto.imagem}"
+                                  alt="Imagem do Produto"
+                                  width="100"
+                                /> </td>
+                                <td th:text="${item.produto.nome}"></td>
+                                <td>
+                                  <span th:text="${item.quantidade}"></span>
+                                </td>
+                                <td th:if="${item.produto.promocao == 1 && item.quantidade == 2}">Leve 2 e Pague 1</td>     
+                                <td th:if="${item.produto.promocao == 1 && item.quantidade != 2}">Nenhuma Promoção Ativa</td>                            
+                                <td th:if="${item.produto.promocao == 2  && item.quantidade == 3}">3 por R$10,00</td>
+                                <td th:if="${item.produto.promocao == 2  && item.quantidade != 3}">Nenhuma Promoção Ativa</td>
+                                <td th:if="${item.produto.promocao == 3}">Nenhuma Promoção Ativa</td>
+                                <td class="text-right" th:text="${item.valorTotal}"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Sub-Total</td>
+                                <td class="text-right"><span th:text="${compra.valorTotal}"></span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Frete</td>
+                                <td class="text-right">0,00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right"><strong><span th:text="${compra.valorTotal}"></span></strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col mb-2">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 text-right">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Confirmar a Compra</button>
+                    </div>
+                </div>
+            </div>       
+        </div>
+    </form>
+  </div>
+  </body>
+	<div th:replace="cliente/fragments/footer :: footer"></div>
+	<div th:replace="cliente/fragments/footer :: script"></div>
+</html>

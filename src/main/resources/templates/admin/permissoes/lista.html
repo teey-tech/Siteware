@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmls:th="http://thymeleaf.org"
+  xmls:layout="http://www.ultraq.net/thymeleaf/layout"
+>
+  <head>
+    <title>Administrativo Siteware - Lista de Permissões</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header th:replace="fragments/navbar :: header"></header>
+    <div class="layout-main">
+      <aside th:replace="fragments/navbar :: sidebar"></aside>
+      <section class="layout-content">
+        <nav class="navbar navbar-expand-md bg-light">
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <i class="oi oi-caret-right"></i>
+                <span>Lista de Permissões</span>
+              </li>
+            </ul>
+            <a
+              class="btn btn-primary btn-md"
+              href="/admin/permissoes/cadastrar"
+              role="button"
+            >
+              <span
+                class="oi oi-plus"
+                title="Cadastro"
+                aria-hidden="true"
+              ></span>
+              <span>Cadastrar Permissões</span>
+            </a>
+          </div>
+        </nav>
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nome do Funcionario</th>
+                  <th>Papel</th>
+                  <th>Data de Cadastro</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="permissao : ${listaPermissoes}">
+                  <td th:text="${permissao.id}"></td>
+                  <td th:text="${permissao.funcionario.nome}"></td>
+                  <td th:text="${permissao.papel.nome}"></td>
+                  <td
+                    th:text="${#dates.format(permissao.dataCadastro, 'dd/MM/yyyy')}"
+                  ></td>
+                  <td colspan="2">
+                    <a
+                      class="btn btn-info btn-sm"
+                      th:href="@{/admin/permissoes/editar/{id}(id=${permissao.id})}"
+                      role="button"
+                    >
+                      <span
+                        class="oi oi-brush"
+                        title="remover"
+                        aria-hidden="true"
+                      ></span>
+                    </a>
+                    <a
+                      class="btn btn-info btn-sm"
+                      data-toggle="modal"
+                      data-target="#modal-warning"
+                      th:attr="data-target='#modal-warning'+${permissao.id }"
+                    >
+                      <span
+                        class="oi oi-circle-x"
+                        title="Editar"
+                        aria-hidden="true"
+                      ></span>
+                    </a>
+                    <div
+                      class="modal modal-warning fade in"
+                      th:id="modal-warning+${permissao.id }"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="modal"
+                              aria-label="fechar"
+                            >
+                              <span aria-hidden="true">×</span>
+                            </button>
+                            <h5 class="modal-title">Remover Permissão</h5>
+                          </div>
+                          <div class="modal-body">
+                            <h3>Deseja realmente remover a Permissão?</h3>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-outline pull-left"
+                              data-dismiss="modal"
+                            >
+                              Fechar
+                            </button>
+                            <a
+                              type="button"
+                              class="btn btn-outline"
+                              th:href="@{/admin/permissoes/remover/{id}(id=${permissao.id})}"
+                              ><i class="fa fa-check"></i>&nbsp;Sim</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+    <div th:replace="fragments/footer :: script"></div>
+  </body>
+</html>
