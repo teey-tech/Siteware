@@ -1,8 +1,20 @@
 
-1: As decisões tecnicas e arquiteturais do meu projeto foi baseado em um sistema de loja simples para que eu podesse terminar a tempo de ser entregue.
+1: As decisões tecnicas e arquiteturais do meu projeto foram  
 
-2: Os frameworks que foram utilizados foram o Spring e o Thymeleaf eu gosto de trabalhar com Spring acredito que seja um framework bem completo e simples de usar e o uso do Thymeleaf foi pelo fato de eu precisar de algo leve e simples de ser usado o thymeleaf apresenta tudo isso
+  Tecnologias e Plataformas: java com o framework spring boot o sistema de gerenciamento de banco de dados foi o MySQL 
 
+
+  Arquitetura: a arquitetura utilizada foi a de MVC-S(Model-View-Controller-Service) 
+
+  Gerenciamento de Dados: Decidi utilizar um banco de dados relacional sendo ele o Mysql
+
+  Interfaces de Usuário: Utilizei HTML, CSS, BOOTSTRAP, JAVASCRIPT, JQUERY e utilizei o Thymeleaf para facilitar o uso dos templates
+
+
+  Controle de Versão e Colaboração: Github
+
+
+2: Os frameworks que foram utilizados foram o Spring e o Thymeleaf eu gosto de trabalhar com Spring acredito que seja um framework bem completo e simples de usar e o uso do Thymeleaf foi pelo fato de eu precisar de algo leve e simples que conseguisse dar um bom controle aos meus templates.
 
 3: O projeto pode ser executado em qualquer IDE eu utilizei o visual studio Code o banco de dados que utilizei foi o Mysql entao provavelmente vai ter algum conflito de usuario e senha pra resolver isso é só alterar o username e o password do application.properties
 
