@@ -28,11 +28,6 @@ public class SecurityCliente extends WebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-                auth.inMemoryAuthentication().withUser("siteware")
-                                .password(new BCryptPasswordEncoder().encode("siteware")).roles("ADMIN",
-                                                "USER")
-                                .authorities("gerente", "vendedor");
-
                 auth.jdbcAuthentication().dataSource(dataSource)
                                 .usersByUsernameQuery(
                                                 "select email as username, senha as password, 1 as enable from cliente where email=?")

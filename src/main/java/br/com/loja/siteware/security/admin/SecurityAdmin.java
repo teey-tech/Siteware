@@ -18,37 +18,36 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Order(2)
 public class SecurityAdmin extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
+        @Autowired
+        private DataSource dataSource;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("siteware")
-                .password(new BCryptPasswordEncoder().encode("siteware")).roles("ADMIN",
-                        "USER")
-                .authorities("gerente", "vendedor");
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+                auth.inMemoryAuthentication().withUser("siteware")
+                                .password(new BCryptPasswordEncoder().encode("siteware")).roles("ADMIN",
+                                                "USER")
+                                .authorities("admin");
 
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery(
-                        "select email as username, senha as password, 1 as enable from funcionario where email=?")
-                .authoritiesByUsernameQuery(
-                        "select funcionario.email as username, papel.nome as authority from permissoes inner join funcionario on funcionario.id=permissoes.funcionario_id inner join papel on permissoes.papel_id=papel.id where funcionario.email=?")
-                .passwordEncoder(new BCryptPasswordEncoder());
+                auth.jdbcAuthentication().dataSource(dataSource)
+                                .usersByUsernameQuery(
+                                                "select email as username, senha as password, 1 as enable from funcionario where email=?")
+                                .authoritiesByUsernameQuery(
+                                                "select email as username, 'admin' as authority from funcionario where email=?")
+                                .passwordEncoder(new BCryptPasswordEncoder());
 
-    }
+        }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/admin/entrada/**").hasAuthority("gerente")
-                .antMatchers("/admin/**").hasAnyAuthority("gerente", "vendedor")
-                .and()
-                .formLogin()
-                .loginPage("/login").permitAll().and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/admin").and()
-                .exceptionHandling().accessDeniedPage("/negadoAdministrativo");
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+                http.csrf().disable().authorizeRequests()
+                                .antMatchers("/admin/**").hasAnyAuthority("admin")
+                                .and()
+                                .formLogin()
+                                .loginPage("/login").permitAll().and().logout()
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/admin").and()
+                                .exceptionHandling().accessDeniedPage("/negadoAdministrativo");
 
-    }
+        }
 
 }
