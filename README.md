@@ -47,3 +47,18 @@ localhost:8080/
 la estará a home que exibira os produtos adicionados na parte de admin nesta area o cliente pode adicionar o produto no carrinho checar o carrinho de compra dependendo da quantidade a promoção ira tomar efeito por enquanto só tem duas promoções a 1 por 2 e a 3 pague 10 
 
 feito a compra o cliente pode finalizar a compra e escolher o metodo de pagamento no final ira exibir uma mensagem de compra concluida.
+
+
+
+Atualizações necessarias futuramente:
+
+
+  1: não permitir que o mesmo Email se cadastre no sistema
+
+  2: quando atualizar um funcionario ele não precisar digitar a senha de novo
+
+  3: fazer a contagem de estoque de produtos
+
+
+  4: restringir compra quando produto não estiver no estoque
+  
