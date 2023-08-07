@@ -61,7 +61,6 @@
                   <th>#</th>
                   <th>Nome</th>
                   <th>Descrição</th>
-                  <th>Quantidade em Estoque</th>
                   <th>Preço</th>
                   <th>Promoção</th>
                   <th>Imagem</th>
@@ -73,7 +72,6 @@
                   <td th:text="${produto.id}"></td>
                   <td th:text="${produto.nome}"></td>
                   <td th:text="${produto.descricao}"></td>
-                  <td th:text="${produto.quantidadeEstoque}"></td>
                   <td>R$ <span th:text="${produto.preco}"></span></td>
                   <td th:if="${produto.promocao == 1}">Leve 2 e Pague 1</td>
                   <td th:if="${produto.promocao == 2}">3 por R$10,00</td>
